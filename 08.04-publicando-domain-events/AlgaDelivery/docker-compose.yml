@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:17.5
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - local-network
+  pgadmin:
+    image: dpage/pgadmin4:9.5
+    depends_on:
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dba@algadelivery.com
+      PGADMIN_DEFAULT_PASSWORD: algadelivery
+    ports:
+      - 8083:80
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - local-network
+volumes:
+  postgres-data:
+  pgadmin-data:
+networks:
+  local-network:
+    driver: bridge

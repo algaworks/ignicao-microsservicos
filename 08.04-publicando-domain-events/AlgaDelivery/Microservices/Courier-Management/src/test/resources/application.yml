@@ -1,0 +1,13 @@
+server.port: 8081
+
+spring:
+  application:
+    name: courier-management
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/courierdb_test
+    username: postgres
+    password: postgres
